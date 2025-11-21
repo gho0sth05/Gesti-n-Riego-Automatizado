@@ -22,12 +22,21 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-urlpatterns = [
+urlpatterns = [path('admin/', admin.site.urls),
+    
+    # APIs
+    path('api/', include('zonas_riego.urls')),
+    path('api/', include('programaciones.urls')),
+    path('api/', include('sensores.urls')),
+    path('api/', include('consumo_agua.urls')),
     path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/', include('sensores.urls')),
-    path('api/', include('consumo_agua.urls')),
+    # Documentación Swagger/OpenAPI
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui-root'),
 ]
 # Configuración de Swagger
 schema_view = get_schema_view(
@@ -63,16 +72,3 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    
-    # APIs
-    path('api/', include('zonas_riego.urls')),
-    path('api/', include('programaciones.urls')),
-    
-    # Documentación Swagger/OpenAPI
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui-root'),
-]
