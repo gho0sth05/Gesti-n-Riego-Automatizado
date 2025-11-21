@@ -39,26 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Third party apps
-    'rest_framework',
-    'django_filters',
-    'drf_yasg',
-    'corsheaders',
-    
-    # Local apps
-    'zonas_riego',
-    'programaciones',
-]
-
-# Third-party apps
-INSTALLED_APPS += [
     'rest_framework',
     'drf_spectacular',
     'django_filters',
     'sensores',
     'consumo_agua',
+    'drf_yasg',
+    'corsheaders',
+    # Local apps
+    'zonas_riego',
+    'programaciones',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
