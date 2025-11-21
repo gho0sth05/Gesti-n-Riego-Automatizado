@@ -1,0 +1,9 @@
+Django>=5.2,<6
+djangorestframework
+python-decouple
+drf-spectacular
+django-filter
+mysqlclient
+PyMySQL
+pytest
+pytest-django
