@@ -20,30 +20,54 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-# Configuración de Swagger
+# Configuración de Swagger/OpenAPI Documentation
 schema_view = get_schema_view(
     openapi.Info(
-        title="API de Gestión de Riego Automatizado",
+        title="🌱 API de Gestión de Riego Automatizado",
         default_version='v1',
         description="""
-        API REST para el sistema de gestión de riego automatizado.
+        API REST completa para el sistema de gestión de riego automatizado.
         
-        ## Características principales:
+        ## 🎯 Características principales:
         - **Zonas de Riego**: Gestión completa de zonas de riego
         - **Programaciones**: Configuración de horarios y frecuencias de riego
+        - **Sensores**: Monitoreo de humedad y temperatura
+        - **Consumo de Agua**: Control y seguimiento del consumo de agua
         - **Estadísticas**: Endpoints de análisis y reportes
         
-        ## Aplicaciones:
-        ### Zonas de Riego
-        - Gestión de zonas
-        - Filtros por tipo, estado y área
-        - Estadísticas y resúmenes
+        ## 📦 Aplicaciones:
         
-        ### Programaciones
+        ### 🌳 Zonas de Riego (`/api/zonas/`)
+        - Gestión de zonas de riego
+        - Tipos: jardín, huerto, césped, cultivo, ornamental
+        - Estados: activa, inactiva, mantenimiento
+        - Filtros por tipo, estado, área y capacidad
+        - Estadísticas y resúmenes detallados
+        
+        ### 📅 Programaciones (`/api/programaciones/`)
         - Programación de riegos automáticos
-        - Gestión de horarios y frecuencias
-        - Simulación de ejecuciones
-        - Análisis de consumo de agua
+        - Frecuencias: diaria, semanal, quincenal, mensual, personalizada
+        - Sistema de prioridades (1-10)
+        - Control de vigencia y ejecución
+        - Simulación de riegos
+        
+        ### 📊 Sensores (`/api/sensores/` y `/api/lecturas/`)
+        - Gestión de sensores de humedad y temperatura
+        - Registro de lecturas en tiempo real
+        - Consulta de histórico de lecturas
+        - Filtros por sensor, fecha y tipo
+        
+        ### 💧 Consumo de Agua (`/api/medidores/` y `/api/consumos/`)
+        - Gestión de medidores de agua
+        - Registro de consumo diario (m³)
+        - Seguimiento por medidor y fecha
+        - Análisis de consumo histórico
+        
+        ## 🔍 Filtrado y Búsqueda:
+        Todos los endpoints de listado soportan filtrado avanzado mediante query parameters.
+        
+        ## 📄 Paginación:
+        Los resultados están paginados (10 items por página por defecto).
         """,
         terms_of_service="https://www.example.com/terms/",
         contact=openapi.Contact(email="contact@riego.local"),
@@ -57,9 +81,11 @@ urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
     
-    # APIs
+    # API Endpoints
     path('api/', include('zonas_riego.urls')),
     path('api/', include('programaciones.urls')),
+    path('api/', include('sensores.urls')),
+    path('api/', include('consumo_agua.urls')),
     
     # Documentación Swagger/OpenAPI
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
