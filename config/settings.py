@@ -47,6 +47,7 @@ INSTALLED_APPS += [
     'drf_spectacular',
     'django_filters',
     'sensores',
+    'consumo_agua',
 ]
 
 MIDDLEWARE = [
