@@ -62,14 +62,7 @@ Crea un archivo `.env` en la raíz:
 SECRET_KEY=tu_clave_secreta
 DEBUG=True
 ALLOWED_HOSTS=*
-DATABASE_URL=sqlite:///db.sqlite3
-```
 
-Si usas PostgreSQL:
-
-```
-DATABASE_URL=postgres://usuario:password@localhost:5432/riego_db
-```
 
 ### 5️⃣ Aplicar migraciones
 
