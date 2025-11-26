@@ -6,7 +6,7 @@ Backend desarrollado en **Django + Django REST Framework** para gestionar un sis
 
 ## 🚀 Características principales
 
-* **Autenticación JWT** (inicio de sesión seguro para usuarios).
+
 * **API REST completa** para:
 
   * Gestión de zonas de riego.
