@@ -10,3 +10,4 @@ pytest-django
 drf_yasg
 django-cors-headers
 whitenoise
+gunicorn
